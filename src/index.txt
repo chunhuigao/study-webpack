@@ -1,1 +1,1 @@
-我是一个txt文件，我在测试loader,文字中name可以替换成银银吗？
+我是一个txt文件，我在测试loader,文字中name可以替换成中文吗？我是中英文混排English这是map,map是JavaScript中的一种数据结构

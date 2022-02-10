@@ -9,7 +9,7 @@ module.exports = {
         test: /\.txt$/,
         use: {
           loader: path.resolve(__dirname, './src/loader/TextLoader.js'),
-          options: { name: '测试，银银' },
+          options: { name: '姓名' },
         },
       },
     ],
