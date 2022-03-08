@@ -1,8 +1,15 @@
-// function add(a, b) {
-//   return a + b
-// }
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import Home from './Home/index.tsx'
 
-// const aa = add(1, 8)
-// console.log(aa)
-const oRoot = document.getElementById('root')
-oRoot.innerText = 'webpack'
+export default class App extends Component {
+  render() {
+    return (
+      <div>
+        我webpack来自react <Home />
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('root'))

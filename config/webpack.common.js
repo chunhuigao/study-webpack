@@ -14,4 +14,12 @@ module.exports = {
       filename: 'index.html',
     }),
   ],
+  module: {
+    rules: [
+      {
+        test: /\.(js|tsx)/,
+        loader: 'babel-loader',
+      },
+    ],
+  },
 }
