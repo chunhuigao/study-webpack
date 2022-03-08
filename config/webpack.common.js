@@ -1,12 +1,17 @@
 const path = require('path')
-
-console.log('11', path.resolve(__dirname, '../src/index.js'))
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   entry: {
     index: path.resolve(__dirname, '../src/index.js'),
   },
   output: {
     filename: 'js/[name].[chunkhash:4].js',
-    path: path.resolve(__dirname, '../dist'),
+    path: path.join(__dirname, '../dist'),
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, '../index.html'),
+      filename: 'index.html',
+    }),
+  ],
 }
