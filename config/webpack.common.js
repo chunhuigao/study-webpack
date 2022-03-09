@@ -21,16 +21,25 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
-        test: /\.css/,
+        test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.scss/,
+        test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.less/,
+        test: /\.less$/,
         use: ['style-loader', 'css-loader', 'lass-loader'],
+      },
+      {
+        test: /\.(png|jpg|git|jpe?g)$/,
+        loader: 'url-loader',
+        options: {},
+      },
+      {
+        test: /\.(ott|tts)$/,
+        loader: 'file-loader',
       },
     ],
   },
