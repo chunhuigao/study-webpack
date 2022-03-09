@@ -1,11 +1,14 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WebpackBar = require('webpackbar')
 module.exports = {
   entry: {
-    index: path.resolve(__dirname, '../src/index.js'),
+    index1: path.resolve(__dirname, '../src/index.js'),
+    index2: path.resolve(__dirname, '../src/index.js'),
+    index3: path.resolve(__dirname, '../src/index.js'),
   },
   output: {
-    filename: 'js/[name].[chunkhash:4].js',
+    filename: '[name].[chunkhash:4].js',
     path: path.join(__dirname, '../dist'),
   },
   plugins: [
@@ -13,6 +16,7 @@ module.exports = {
       template: path.resolve(__dirname, '../index.html'),
       filename: 'index.html',
     }),
+    new WebpackBar(),
   ],
   module: {
     rules: [
