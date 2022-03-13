@@ -1,6 +1,8 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackBar = require('webpackbar')
+const TerserWebpackPlugin = require('terser-webpack-plugin')
+
 module.exports = {
   entry: {
     index1: path.resolve(__dirname, '../src/index.js'),
@@ -39,12 +41,27 @@ module.exports = {
       {
         test: /\.(png|jpg|git|jpe?g)$/,
         loader: 'url-loader',
-        options: {},
+
+        options: {
+          name: '[name].[hash:8].[ext]',
+          output: 'assets/image',
+        },
       },
       {
-        test: /\.(ott|tts)$/,
+        test: /\.(ttf|woff|woff2|eot|otf)$/,
         loader: 'file-loader',
+        options: {
+          name: '[name].[hash:8].[ext]',
+          output: 'assets/font',
+        },
       },
+    ],
+  },
+  optimization: {
+    minimizer: [
+      new TerserWebpackPlugin({
+        extractComments: false,
+      }),
     ],
   },
 }

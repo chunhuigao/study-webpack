@@ -4140,7 +4140,7 @@
   "resolved" "https://registry.npmjs.org/tapable/-/tapable-2.2.1.tgz"
   "version" "2.2.1"
 
-"terser-webpack-plugin@^5.1.3":
+"terser-webpack-plugin@^5.1.3", "terser-webpack-plugin@^5.3.1":
   "integrity" "sha512-GvlZdT6wPQKbDNW/GDQzZFg/j4vKU96yl2q6mcUkzKOgW4gwf1Z8cZToUCrz31XHlPWH8MVb1r2tFtdDtTGJ7g=="
   "resolved" "https://registry.npmjs.org/terser-webpack-plugin/-/terser-webpack-plugin-5.3.1.tgz"
   "version" "5.3.1"
