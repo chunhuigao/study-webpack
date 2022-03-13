@@ -2,6 +2,8 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackBar = require('webpackbar')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
+const IS_PRO = process.env.NODE_ENV === 'production'
+console.log('process', IS_PRO)
 
 module.exports = {
   entry: {
@@ -55,13 +57,6 @@ module.exports = {
           output: 'assets/font',
         },
       },
-    ],
-  },
-  optimization: {
-    minimizer: [
-      new TerserWebpackPlugin({
-        extractComments: false,
-      }),
     ],
   },
 }
