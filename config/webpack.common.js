@@ -2,8 +2,9 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackBar = require('webpackbar')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const IS_PRO = process.env.NODE_ENV === 'production'
-console.log('process', IS_PRO)
+const IS_DEV = process.env.NODE_ENV === 'development'
 
 const entry = {}
 Array(10)
@@ -23,6 +24,10 @@ module.exports = {
       filename: 'index.html',
     }),
     new WebpackBar(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[name].[contenthash:4].js',
+    }),
   ],
   module: {
     rules: [
@@ -32,16 +37,23 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          IS_DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+        ],
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          IS_DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.less$/,
         use: [
-          'style-loader',
+          IS_DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'less-loader',
