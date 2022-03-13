@@ -5,12 +5,14 @@ const TerserWebpackPlugin = require('terser-webpack-plugin')
 const IS_PRO = process.env.NODE_ENV === 'production'
 console.log('process', IS_PRO)
 
+const entry = {}
+Array(10)
+  .fill(0)
+  .map((v, i) => {
+    entry['index' + i] = path.resolve(__dirname, '../src/index.js')
+  })
 module.exports = {
-  entry: {
-    index1: path.resolve(__dirname, '../src/index.js'),
-    index2: path.resolve(__dirname, '../src/index.js'),
-    index3: path.resolve(__dirname, '../src/index.js'),
-  },
+  entry: entry,
   output: {
     filename: '[name].[chunkhash:4].js',
     path: path.join(__dirname, '../dist'),
@@ -38,7 +40,18 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'lass-loader'],
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jpg|git|jpe?g)$/,

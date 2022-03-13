@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import 'antd/dist/antd.less'
 import Home from './Home/index.tsx'
 import List from './List/index.tsx'
 

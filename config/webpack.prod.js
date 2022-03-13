@@ -10,10 +10,7 @@ module.exports = merge(webpackCommon, {
     minimize: true,
     minimizer: [
       new TerserWebpackPlugin({
-        extractComments: false,
-        terserOptions: {
-          compress: {},
-        },
+        minify: TerserWebpackPlugin.esbuildMinify,
       }),
     ],
   },
