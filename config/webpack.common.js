@@ -1,19 +1,19 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const WebpackBar = require('webpackbar')
-const TerserWebpackPlugin = require('terser-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const IS_PRO = process.env.NODE_ENV === 'production'
-const IS_DEV = process.env.NODE_ENV === 'development'
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackBar = require('webpackbar');
 
-const entry = {}
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const IS_DEV = process.env.NODE_ENV === 'development';
+
+const entry = {};
 Array(10)
   .fill(0)
   .map((v, i) => {
-    entry['index' + i] = path.resolve(__dirname, '../src/index.js')
-  })
+    entry[`index${i}`] = path.resolve(__dirname, '../src/index.js');
+  });
 module.exports = {
-  entry: entry,
+  entry,
   output: {
     filename: '[name].[chunkhash:4].js',
     path: path.join(__dirname, '../dist'),
@@ -37,18 +37,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          IS_DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-        ],
+        use: [IS_DEV ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.scss$/,
-        use: [
-          IS_DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-        ],
+        use: [IS_DEV ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.less$/,
@@ -84,4 +77,4 @@ module.exports = {
       },
     ],
   },
-}
+};

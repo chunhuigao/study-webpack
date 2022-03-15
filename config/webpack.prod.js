@@ -1,8 +1,8 @@
-const { merge } = require('webpack-merge')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const webpackCommon = require('./webpack.common.js')
-const TerserWebpackPlugin = require('terser-webpack-plugin')
-const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
+const { merge } = require('webpack-merge');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
+const webpackCommon = require('./webpack.common');
 
 module.exports = merge(webpackCommon, {
   mode: 'production',
@@ -15,4 +15,4 @@ module.exports = merge(webpackCommon, {
       }),
     ],
   },
-})
+});
