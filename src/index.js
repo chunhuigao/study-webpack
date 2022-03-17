@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
 function Index() {
-  return <div>这是react</div>;
+  return <div>这是r eact</div>
 }
-export default Index;
+export default Index
