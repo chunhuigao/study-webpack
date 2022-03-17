@@ -1,5 +1,4 @@
 {
-  // 指定哪些文件不参与搜索
   "search.exclude": {
     "**/node_modules": true,
     "dist": true,
