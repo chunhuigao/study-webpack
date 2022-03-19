@@ -37,11 +37,61 @@ module.exports = {
       },
       {
         test: /\.(less)$/,
-        use: ["style-loader", "css-loader", "less-loader"],
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 2,
+            },
+          },
+          {
+            loader: "postcss-loader",
+          },
+
+          "less-loader",
+        ],
       },
       {
         test: /\.(scss)$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 2,
+            },
+          },
+          {
+            loader: "postcss-loader",
+          },
+          "sass-loader",
+        ],
+      },
+      {
+        test: /\.(bmp|gif|png|jpe?g)$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 10 * 1024,
+              name: "[name].[contenthash:8].[ext]",
+              outputPath: "assets/images",
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(ttf|woff|woff2|eot|otf)$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              name: "[name].[contenthash:8].[ext]",
+              outputPath: "assets/fonts",
+            },
+          },
+        ],
       },
     ],
   },
