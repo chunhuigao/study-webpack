@@ -1,6 +1,8 @@
 import React from "react"
 
 import "./Home.css"
+import "./style.less"
+import "./style.scss"
 type Props = {}
 
 export default function Home({}: Props) {
