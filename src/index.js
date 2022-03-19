@@ -1,14 +1,17 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import Home from "./Home.tsx"
-export default function App() {
+import Home from "./Home/index.jsx"
+import List from "./List/index.tsx"
+
+export default function Index() {
   return (
     <div>
-      <h2>我是react</h2>
-      <Home />
+      我是react <Home />
+      <List />
     </div>
   )
 }
 
 const root = document.getElementById("root")
-ReactDOM.render(<App />, root)
+// root.textContent = "webpackwqewq2"
+ReactDOM.render(<Index />, root)

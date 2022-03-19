@@ -1,10 +1,10 @@
-const {merge} = require('webpack-merge')
-const common = require('./webpack.common.js')
+const { merge } = require("webpack-merge")
+const common = require("./webpack.common.js")
 
-module.exports = merge(common,{
-    mode:'development',
-    devServer:{
-        host:'localhost',
-        port:'8888'
-    }
+module.exports = merge(common, {
+  mode: "development",
+  devServer: {
+    host: "localhost",
+    port: "8888",
+  },
 })
