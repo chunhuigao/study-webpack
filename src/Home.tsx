@@ -1,7 +1,8 @@
 import React from "react"
 
+import "./Home.css"
 type Props = {}
 
 export default function Home({}: Props) {
-  return <div>我是typescript</div>
+  return <div className="box">我是typescript</div>
 }
