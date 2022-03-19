@@ -1,11 +1,13 @@
 const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const TerserPlugin = require("terser-webpack-plugin")
 module.exports = {
   entry: {
     index: path.join(__dirname, "../src/index.js"),
   },
   output: {
-    filename: "[name].[hash:4].js",
+    filename: "[name].[chunkhash:4].js",
     path: path.join(__dirname, "../dist"),
   },
   plugins: [
@@ -13,6 +15,7 @@ module.exports = {
       template: path.join(__dirname, "../tempate.html"),
       filename: "index.html",
     }),
+    new MiniCssExtractPlugin(),
   ],
   module: {
     rules: [
@@ -23,7 +26,7 @@ module.exports = {
       {
         test: /\.(css)$/,
         use: [
-          "style-loader",
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
@@ -38,7 +41,7 @@ module.exports = {
       {
         test: /\.(less)$/,
         use: [
-          "style-loader",
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
@@ -55,7 +58,7 @@ module.exports = {
       {
         test: /\.(scss)$/,
         use: [
-          "style-loader",
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
@@ -93,6 +96,17 @@ module.exports = {
           },
         ],
       },
+    ],
+  },
+  stats: {
+    modules: false,
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false, // 不在生成 license
+      }),
     ],
   },
 }
