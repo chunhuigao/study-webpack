@@ -13,6 +13,7 @@ module.exports = {
     filename: "[name].[chunkhash:4].js",
     path: path.join(__dirname, "../dist"),
   },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "../index.html"),
@@ -80,6 +81,7 @@ module.exports = {
         // minify: TersetWebpackPlugin.terserMinify,
       }),
     ],
+    splitChunks: {},
   },
   externals: {
     react: "React",
