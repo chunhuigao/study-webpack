@@ -1,0 +1,7 @@
+$min: 0;
+$max: 100;
+@for $n from $min to $max {
+  .w-#{$n} {
+    width: #{$n}px;
+  }
+}

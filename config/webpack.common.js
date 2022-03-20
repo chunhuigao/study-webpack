@@ -1,9 +1,11 @@
 const path = require("path")
+const golb = require("glob")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const WebpackBar = require("webpackbar")
 const TersetWebpackPlugin = require("terser-webpack-plugin")
 const MiniCssPlugin = require("mini-css-extract-plugin")
 const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin")
+const PurgecssWebpackPlugin = require("purgecss-webpack-plugin")
 
 module.exports = {
   entry: {
@@ -22,6 +24,13 @@ module.exports = {
     new WebpackBar(),
     new MiniCssPlugin(),
     new CssMinimizerWebpackPlugin(),
+    new PurgecssWebpackPlugin({
+      paths: golb.sync(
+        `${path.join(__dirname, "../src/")}/**/*.{css,jsx,js,tsx,less,scss}`,
+        { nodir: true }
+      ),
+      whitelist: ["html", "body"],
+    }),
   ],
   module: {
     rules: [
