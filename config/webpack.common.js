@@ -1,14 +1,13 @@
 const path = require("path")
-const glob = require("glob")
+const golb = require("glob")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const WebpackBar = require("webpackbar")
 const TersetWebpackPlugin = require("terser-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const MiniCssPlugin = require("mini-css-extract-plugin")
 const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin")
 const PurgecssWebpackPlugin = require("purgecss-webpack-plugin")
-const PATHS = {
-  src: path.join(__dirname, "../src"),
-}
+const MyWebpackPlugin = require("../plugins/index.js")
+
 module.exports = {
   entry: {
     index: path.join(__dirname, "../src/index.js"),
@@ -27,15 +26,18 @@ module.exports = {
       filename: "index.html",
     }),
     new WebpackBar(),
-    new MiniCssExtractPlugin(),
+    new MiniCssPlugin(),
     new CssMinimizerWebpackPlugin(),
     // new PurgecssWebpackPlugin({
-    //   // paths: golb.sync(`${path.join(__dirname, "../src")}/**`, { nodir: true }),
-    //   paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
-    //   only: ["style"],
-    //   //whitelist: ["html", "body"],
-    //   // paths: glob.sync(path.join(__dirname, "../index.html")),
+    //   paths: golb.sync(
+    //     `${path.join(__dirname, "../src/")}/**/*.{css,jsx,js,tsx,less,scss}`,
+    //     { nodir: true }
+    //   ),
+    //   whitelist: ["html", "body"],
     // }),
+    new MyWebpackPlugin({
+      paths: [],
+    }),
   ],
   module: {
     rules: [
@@ -45,12 +47,12 @@ module.exports = {
       },
       {
         test: /\.(css)$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: [MiniCssPlugin.loader, "css-loader"],
       },
       {
         test: /\.(less)$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          MiniCssPlugin.loader,
           "css-loader",
           {
             loader: "less-loader",
@@ -64,7 +66,7 @@ module.exports = {
       },
       {
         test: /\.(scss)$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: [MiniCssPlugin.loader, "css-loader", "sass-loader"],
       },
       {
         test: /\.(png|gif)$/,
