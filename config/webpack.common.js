@@ -1,29 +1,29 @@
-const path = require("path")
-const golb = require("glob")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const WebpackBar = require("webpackbar")
-const TersetWebpackPlugin = require("terser-webpack-plugin")
-const MiniCssPlugin = require("mini-css-extract-plugin")
-const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin")
-const PurgecssWebpackPlugin = require("purgecss-webpack-plugin")
-const MyWebpackPlugin = require("../plugins/index.js")
+const path = require('path');
+const golb = require('glob');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackBar = require('webpackbar');
+const TersetWebpackPlugin = require('terser-webpack-plugin');
+const MiniCssPlugin = require('mini-css-extract-plugin');
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
+const PurgecssWebpackPlugin = require('purgecss-webpack-plugin');
+const MyWebpackPlugin = require('../plugins/index.js');
 
 module.exports = {
   entry: {
-    index: path.join(__dirname, "../src/index.js"),
+    index: path.join(__dirname, '../src/index.js'),
   },
   output: {
-    filename: "[name].[chunkhash:4].js",
-    path: path.join(__dirname, "../dist"),
+    filename: '[name].[chunkhash:4].js',
+    path: path.join(__dirname, '../dist'),
   },
   cache: {
-    type: "filesystem",
+    type: 'filesystem',
   },
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "../index.html"),
-      filename: "index.html",
+      template: path.join(__dirname, '../index.html'),
+      filename: 'index.html',
     }),
     new WebpackBar(),
     new MiniCssPlugin(),
@@ -43,19 +43,19 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx|ts|tsx)$/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
       },
       {
         test: /\.(css)$/,
-        use: [MiniCssPlugin.loader, "css-loader"],
+        use: [MiniCssPlugin.loader, 'css-loader'],
       },
       {
         test: /\.(less)$/,
         use: [
           MiniCssPlugin.loader,
-          "css-loader",
+          'css-loader',
           {
-            loader: "less-loader",
+            loader: 'less-loader',
             options: {
               lessOptions: {
                 javascriptEnabled: true,
@@ -66,13 +66,13 @@ module.exports = {
       },
       {
         test: /\.(scss)$/,
-        use: [MiniCssPlugin.loader, "css-loader", "sass-loader"],
+        use: [MiniCssPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|gif)$/,
         use: [
           {
-            loader: "url-loader",
+            loader: 'url-loader',
             options: {
               limit: 102400,
             },
@@ -83,7 +83,7 @@ module.exports = {
         test: /\.ott$/,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
           },
         ],
       },
@@ -100,10 +100,10 @@ module.exports = {
     splitChunks: {},
   },
   externals: {
-    react: "React",
-    "react-dom": "ReactDOM",
+    react: 'React',
+    'react-dom': 'ReactDOM',
   },
   stats: {
     modules: false,
   },
-}
+};
