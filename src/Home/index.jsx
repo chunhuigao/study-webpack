@@ -1,7 +1,6 @@
-import React, { Component } from "react"
-import "./style.scss"
-// import { Button } from "antd"
-import { Button } from "antd"
+import React, { Component } from 'react';
+import './style.scss';
+import { Button } from 'antd';
 export default class ComponentName extends Component {
   render() {
     return (
@@ -11,6 +10,6 @@ export default class ComponentName extends Component {
           <Button>2132</Button>
         </div>
       </div>
-    )
+    );
   }
 }
