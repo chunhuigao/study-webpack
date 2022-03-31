@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const TersetWebpackPlugin = require('terser-webpack-plugin');
 const MiniCssPlugin = require('mini-css-extract-plugin');
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 
 const MyWebpackPlugin = require('../plugins/index.js');
 
