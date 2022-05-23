@@ -7,6 +7,7 @@ const MiniCssPlugin = require('mini-css-extract-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 
 const MyWebpackPlugin = require('../plugins/index.js');
+const htmlLoader = require('./index.js');
 
 module.exports = {
   entry: {
@@ -16,15 +17,15 @@ module.exports = {
     filename: '[name].[chunkhash:4].js',
     path: path.join(__dirname, '../dist'),
   },
-  cache: {
-    type: 'filesystem',
-  },
+  // cache: {
+  //   type: 'filesystem',
+  // },
 
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, '../index.html'),
-      filename: 'index.html',
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: path.join(__dirname, '../index.html'),
+    //   filename: 'index.html',
+    // }),
     new WebpackBar(),
     new MiniCssPlugin(),
     new CssMinimizerWebpackPlugin(),
@@ -38,6 +39,10 @@ module.exports = {
       {
         test: /\.(css)$/,
         use: [MiniCssPlugin.loader, 'css-loader'],
+      },
+      {
+        test: /\.(html)$/,
+        loader: path.join(__dirname, './index.js'),
       },
       {
         test: /\.(less)$/,

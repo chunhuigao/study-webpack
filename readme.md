@@ -1,108 +1,40 @@
----
-theme: channing-cyan
----
 ## 前言
 
-[上一章：从零搭一个极简版 webpack+React 工程（五）](https://juejin.cn/post/7076818753597472798)
+react 优化从减少渲染真实 DOM 的频率，减少虚拟 DOM 的对比频率两个方面
 
-经过一番折腾，作者已经简单搭建出一个 webpack + react + TS 的工程；现在定义一下代码风格。毕竟团队工作，良好的代码风格还是可以帮助提高一下团队效率的。
+## 事件清理
 
-## 安装 eslint
+在组件上绑定的定时器，监听事件需要在组件卸载的时候删除
 
-### 全局安装 eslint
+## class 组件
 
-```shell
-npm i eslint -g
-```
+pureComponent 和 shouldComponentUpdate
 
-### 配置文件初始化
+## react.memo
 
-```shell
-eslint --init
-```
+将函数组件变成纯组件，将当前 props 与上一次 props 对比，如果不发生变化，回阻止组件重新渲染
 
-`How would you like to use ESLint?`
+## 组件懒加载
 
-- To check syntax only
-- To check syntax and find problems
-- `To check syntax, find problems, and enforce code style`
+使用 lazy 包裹一下 import 引用组件
 
-`What type of modules does your project use?`
+## 使用 fragment
 
-- `JavaScript modules (import/export)`
-- CommonJS (require/exports)
-- None of these
+占位标记符，用于标记额外无意义标签
 
-`Which framework does your project use? `
+## 减少内联函数定义
 
-- `React`
-- Vue.js
-- None of these
+添加事件时，如果使用内联函数，每次 render 会生成新的函数实例，在 diff 对比时，新旧函数实例不同会导致 react 总是绑定新的函数实例，而旧的函数实例又需要垃圾回收器处理
 
-`Does your project use TypeScript?`
+## 避免内联样式
 
-- `Yes`
-- No
+内联样式会被编译成 js 代码，通过 js 将样式映射到元素上，需要 js 花更多的时间执行脚本，增加组件负担
 
-`Where does your code run? `
+## 错误边界
 
-- `Browser`
-- `Node`
+## 避免数据结构突变
 
-`How would you like to define a style for your project? `
+## hooks 优化
 
-- `Use a popular style guide`
-- Answer questions about your style
-
-`Which style guide do you want to follow?`
-
-- `Airbnb: https://github.com/airbnb/javascript`
-- Standard: https://github.com/standard/standard
-- Google: https://github.com/google/eslint-config-google
-- XO: https://github.com/xojs/eslint-config-xo
-
-`What format do you want your config file to be in?`
-
-- `JavaScript`
-- YAML
-- JSON
-
-等待 eslint 安装
-
-`Would you like to install them now with npm?`
-
-- `Yes`
-- No
-
-漫长的等待,当看到这句话 eslint 安装完成
-
-`Successfully created .eslintrc.js file in `
-
-### 默认 eslint 配置
-
-安装完 eslint 根目录会生成 .eslintrc.js 这个文件
-
-```js
-module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-  },
-  extends: ['plugin:react/recommended', 'airbnb'],
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-  },
-  plugins: ['react'],
-  rules: {},
-};
-```
-
-## 安装 @types/react @types/react-dom
-
-```shell
-npm i @types/react @types/react-dom -D
-```
+使用 useMemo 缓存，监测值不发生变化，不会重新计算
+使用 useCallback 缓存函数，使重新渲染总能获得相同函数

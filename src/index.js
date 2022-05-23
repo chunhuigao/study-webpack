@@ -1,18 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Home from './Home/index.jsx';
-import List from './List/index.tsx';
-import Todo from './Todo/index.jsx';
-import './utils/style/index.scss';
-import 'antd/dist/antd.less';
+
+import dd from './index.html';
+
+import { add } from './utils/Tool';
 export default function Index() {
-  return (
-    <div>
-      我是react <Home />
-      <List />
-      <Todo />
-    </div>
-  );
+  const aa = add(3, 4);
+  console.log(aa, dd);
+  return <div>21121</div>;
 }
 
 const root = document.getElementById('root');
