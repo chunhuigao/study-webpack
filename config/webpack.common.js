@@ -9,6 +9,9 @@ const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 const MyWebpackPlugin = require('../plugins/index.js');
 const htmlLoader = require('./index.js');
 
+console.log('process.argv', process.env.npm_config_includes);
+const configIncludes = process.env.npm_config_includes;
+const configExcludes = process.env.npm_config_excludes;
 module.exports = {
   entry: {
     index: path.join(__dirname, '../src/index.js'),
@@ -22,10 +25,10 @@ module.exports = {
   // },
 
   plugins: [
-    // new HtmlWebpackPlugin({
-    //   template: path.join(__dirname, '../index.html'),
-    //   filename: 'index.html',
-    // }),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, '../index.html'),
+      filename: 'index.html',
+    }),
     new WebpackBar(),
     new MiniCssPlugin(),
     new CssMinimizerWebpackPlugin(),
